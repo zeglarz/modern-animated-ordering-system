@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Header = () => {
@@ -17,10 +16,10 @@ const Header = () => {
                 </svg>
             </div>
             <div className="title">
-                <h1>Pizza Joint</h1>
+                <h1>Pizza Orderotron</h1>
             </div>
         </header>
-    )
-}
+    );
+};
 
 export default Header;
