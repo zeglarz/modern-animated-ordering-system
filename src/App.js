@@ -20,6 +20,7 @@ const App = () => {
         }
         setPizza({ ...pizza, toppings: newToppings });
     };
+    const resetState = () => setPizza({ base: '', toppings: [] });
 
     return (
         <>
@@ -32,7 +33,7 @@ const App = () => {
                     <Toppings addToppings={addToppings} pizza={pizza}/>
                 </Route>
                 <Route path='/order'>
-                    <Order pizza={pizza}/>
+                    <Order pizza={pizza} resetState={resetState}/>
                 </Route>
                 <Route path='/'>
                     <Home pizza={pizza}/>
