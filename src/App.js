@@ -25,7 +25,7 @@ const App = () => {
         <>
             <Header/>
             <Switch>
-                <Route path='base'>
+                <Route path='/base'>
                     <Base addBase={addBase} pizza={pizza}/>
                 </Route>
                 <Route path='/toppings'>
