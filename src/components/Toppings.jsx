@@ -15,7 +15,7 @@ const Toppings = ({ addToppings, pizza }) => {
                             className={spanClass}>{topping}</span></li>);
                 })}
             </ul>
-            {pizza.toppings && (
+            {pizza.toppings.length > 0 && (
                 <div className='next'>
                     <Link to='/order'>
                         <button>Next</button>
