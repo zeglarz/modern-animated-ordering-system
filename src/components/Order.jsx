@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Order = (props) => {
+const Order = ({ pizza }) => {
     return (
-        <div></div>
+        <div className='order container'>
+            <h3>Order Summary</h3>
+            <h4>Crust: {pizza.base}</h4>
+            <ul>
+                {pizza.toppings.map(topping => <li key={topping}><span>{topping}</span></li>)}
+            </ul>
+        </div>
     );
 };
 
