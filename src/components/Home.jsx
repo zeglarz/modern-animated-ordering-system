@@ -4,16 +4,19 @@ import { motion } from 'framer-motion';
 
 const Home = (props) => {
     return (
-        <div className='home container'>
-            <motion.h2 animate={{ fontSize: 50, x: 100 }}>
-                Welcome to Pizza Oderotron!
-            </motion.h2>
+        <motion.div animate={{ opacity: 1, ease: 'easeIn', transition: { duration: 2 } }}
+                    initial={{ opacity: 0, transform: { rotate: 45 } }}
+                    className='home container'>
+            <h2>Welcome to Pizza Orderotron!</h2>
             <Link to='/base'>
-                <button>
+                <motion.button
+                    animate={{}}
+                    initial
+                >
                     Create your own Pizza
-                </button>
+                </motion.button>
             </Link>
-        </div>
+        </motion.div>
     );
 };
 

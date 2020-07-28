@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Toppings = ({ addToppings, pizza }) => {
     const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapenio'];
@@ -15,12 +16,17 @@ const Toppings = ({ addToppings, pizza }) => {
                             className={spanClass}>{topping}</span></li>);
                 })}
             </ul>
+            <motion.div className='next' initial={{ x: -1000 }} animate={{ x: 0, transition: { duration: .5 } }}>
+                <Link to='/base'>
+                    <button>Back</button>
+                </Link>
+            </motion.div>
             {pizza.toppings.length > 0 && (
-                <div className='next'>
+                <motion.div className='next' initial={{ x: 1000 }} animate={{ x: 0, transition: { duration: .5 } }}>
                     <Link to='/order'>
                         <button>Next</button>
                     </Link>
-                </div>
+                </motion.div>
             )}
         </div>
     );

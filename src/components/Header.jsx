@@ -1,11 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 
 const Header = (props) => {
     return (
         <header onClick={() => props.history.push('/')}>
-            <div className="logo">
+            <motion.div className="logo"
+                        whileHover={{
+                            rotate: 360, transition: {
+                                loop: Infinity,
+                                ease: 'linear',
+                                duration: 5
+                            }
+                        }}
+                        whileTap={{ scale: 1.3 }}
+            >
                 <svg width={78} height={72} viewBox="0 0 78 72">
                     <title>{'Combined Shape'}</title>
                     <path
@@ -14,10 +23,17 @@ const Header = (props) => {
                         fillRule="nonzero"
                     />
                 </svg>
-            </div>
-            <div className="title">
+            </motion.div>
+            <motion.div
+                className="title"
+                animate={{ y: -10 }}
+                whileTap={{ y: -350 }}
+                initial={{ y: -350 }}
+                exit={{ y: 0 }}
+                transition={{ duration: 1.5, type: 'spring', stiffness: 100 }}
+            >
                 <h1>Pizza Orderotron</h1>
-            </div>
+            </motion.div>
         </header>
     );
 };
