@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Button, ButtonContainer } from '../styles.js';
 
 const Base = ({ addBase, pizza }) => {
     const bases = ['Classic', 'Super Thin', 'Cheese stuffed crust'];
 
     return (
-        <div className='base container'>
+        <motion.div className='base container' initial={{ x: '100vw' }}
+                    animate={{ x: 0, transition: { duration: .7, delay: .2, type: 'spring', stiffness: 60 } }}>
             <h3>Choose your crust</h3>
             <ul>
                 {bases.map(base => {
@@ -16,17 +18,13 @@ const Base = ({ addBase, pizza }) => {
                 })}
             </ul>
             {pizza.base && (
-                <motion.div className='next' initial={{ x: '100vw' }}
-                            animate={{
-                                x: 0,
-                                transition: { duration: .5, type: 'spring', stiffness: 70 }
-                            }}>
+                <ButtonContainer>
                     <Link to='/toppings'>
-                        <button>Next</button>
+                        <Button>Next</Button>
                     </Link>
-                </motion.div>
+                </ButtonContainer>
             )}
-        </div>
+        </motion.div>
     );
 };
 
