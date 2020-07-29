@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button, ButtonContainer } from '../styles.js';
+import { Button, ButtonContainer, ButtonsWrapper, MenuItem } from '../styles.js';
 
 const Base = ({ addBase, pizza }) => {
     const bases = ['Classic', 'Super Thin', 'Cheese stuffed crust'];
 
     return (
-        <motion.div className='base container' initial={{ x: '100vw' }}
-                    animate={{ x: 0, transition: { duration: .7, delay: .2, type: 'spring', stiffness: 60 } }}>
+        <MenuItem>
             <h3>Choose your crust</h3>
             <ul>
                 {bases.map(base => {
@@ -18,13 +17,15 @@ const Base = ({ addBase, pizza }) => {
                 })}
             </ul>
             {pizza.base && (
-                <ButtonContainer>
-                    <Link to='/toppings'>
-                        <Button>Next</Button>
-                    </Link>
-                </ButtonContainer>
+                <ButtonsWrapper>
+                    <ButtonContainer>
+                        <Link to='/toppings'>
+                            <Button>Next</Button>
+                        </Link>
+                    </ButtonContainer>
+                </ButtonsWrapper>
             )}
-        </motion.div>
+        </MenuItem>
     );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, ButtonContainer } from '../styles.js';
 
 const Order = ({ pizza, resetState }) => {
     return (
@@ -8,9 +9,9 @@ const Order = ({ pizza, resetState }) => {
             <p>You are about to order a {pizza.base} pizza with:</p>
             {pizza.toppings.map(topping => <div key={topping}>{topping}</div>)}
             <Link to='/'>
-                <button onClick={() => resetState()}>
+                <Button onClick={() => resetState()}>
                     Place Order
-                </button>
+                </Button>
             </Link>
         </div>
     );

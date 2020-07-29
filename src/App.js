@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Toppings from './components/Toppings';
@@ -7,7 +7,17 @@ import Base from './components/Base';
 import Order from './components/Order';
 
 const App = () => {
-    const [pizza, setPizza] = useState({ base: '', toppings: [] });
+    const pizzaProps = { base: '', toppings: [] };
+
+    const storage = window.localStorage;
+
+    const initialState = JSON.parse(storage.getItem('storedPizzaProps')) || pizzaProps;
+
+    const [pizza, setPizza] = useState(initialState);
+
+    useEffect(() => {
+        storage.setItem('storedPizzaProps', JSON.stringify(pizza));
+    }, [storage, pizza]);
 
     const addBase = base => setPizza({ ...pizza, base });
 
@@ -20,7 +30,7 @@ const App = () => {
         }
         setPizza({ ...pizza, toppings: newToppings });
     };
-    const resetState = () => setPizza({ base: '', toppings: [] });
+    const resetState = () => setPizza(pizzaProps);
 
     return (
         <>

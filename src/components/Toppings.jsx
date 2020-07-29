@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button, ButtonContainer } from '../styles.js';
+import { Button, ButtonContainer, ButtonsWrapper, MenuItem } from '../styles.js';
 
 const Toppings = ({ addToppings, pizza }) => {
     const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapenio'];
 
     return (
-        <div className='toppings container'>
+        <MenuItem left>
             <h3>Choose your toppings</h3>
             <ul>
                 {toppings.map(topping => {
@@ -17,19 +17,21 @@ const Toppings = ({ addToppings, pizza }) => {
                             className={spanClass}>{topping}</span></li>);
                 })}
             </ul>
-            <ButtonContainer back>
-                <Link to='/base'>
-                    <Button>Back</Button>
-                </Link>
-            </ButtonContainer>
-            {pizza.toppings.length > 0 && (
-                <ButtonContainer>
-                    <Link to='/order'>
-                        <Button>Next</Button>
+            <ButtonsWrapper>
+                <ButtonContainer back>
+                    <Link to='/base'>
+                        <Button>Back</Button>
                     </Link>
                 </ButtonContainer>
-            )}
-        </div>
+                {pizza.toppings.length > 0 && (
+                    <ButtonContainer>
+                        <Link to='/order'>
+                            <Button>Next</Button>
+                        </Link>
+                    </ButtonContainer>
+                )}
+            </ButtonsWrapper>
+        </MenuItem>
     );
 };
 
