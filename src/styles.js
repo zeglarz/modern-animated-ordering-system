@@ -29,7 +29,7 @@ export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
     initial: { x: back ? '-100vw' : '100vw' },
     animate: {
         x: 0,
-        transition: { duration: .3, type: 'spring', stiffness: 50, delay: .3 }
+        transition: { duration: .3, type: 'spring', stiffness: 45, delay: .3 }
     }
 }))`
   display: inline-block;
@@ -39,6 +39,15 @@ export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
 export const ButtonsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+`;
+export const ButtonsColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    & div {
+    margin: 0 0;
+    }
 `;
 
 export const MenuItem = styled(motion.div).attrs(({ left }) => ({
@@ -57,4 +66,32 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     padding: 10px;
     cursor: pointer;
     }
+    li:hover {
+        font-weight: bold;
+    opacity: 0.9;
+    font-size: 1.2rem;
+    color: #c69e3c;
+    transform-origin: 0 50%;
+    }
+    span.active {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #c69e3c;
+    }
+    span.active:hover::before {
+    content: "🅧";
+    color: #e63946;
+    position: relative;
+    font-size: 1rem;
+    top: 1px;
+    margin-right: 6px;
+    transform: scale(1);
+    display: inline-block;
+    }
+     span.active:hover {
+     color: #e63946;
+     height: 20px;
+
+
+}
 `;
