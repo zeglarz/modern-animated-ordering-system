@@ -19,7 +19,7 @@ const App = () => {
         storage.setItem('storedPizzaProps', JSON.stringify(pizza));
     }, [storage, pizza]);
 
-    const addBase = base => base === pizza.base ? setPizza({ ...pizza, base: '' }) : setPizza({ ...pizza, base });
+    const addBase = base => setPizza({ ...pizza, base: pizza.base === base ? '' : base });
 
     const addToppings = topping => {
         let newToppings = [];

@@ -30,7 +30,8 @@ export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
     animate: {
         x: 0,
         transition: { duration: .3, type: 'spring', stiffness: 45, delay: .3 }
-    }
+    },
+    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .3, type: 'spring', stiffness: 45, delay: .3 } }
 }))`
   display: inline-block;
   margin-left: ${({ back }) => back ? '0' : 'auto'}
@@ -62,23 +63,38 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     }
-    li {
-    padding: 10px;
-    cursor: pointer;
+`;
+
+export const Item = styled(motion.li).attrs({
+    whileHover: {
+        scale: 1.3,
+        originX: 0,
+        transition: {
+            type: 'spring',
+            stiffness: 300,
+            duration: 0.3
+        }
     }
-    li:hover {
-        font-weight: bold;
+})`
+    cursor: pointer;
+    padding: 10px;
+    &:hover {
+    font-weight: bold;
     opacity: 0.9;
-    font-size: 1.2rem;
-    color: #c69e3c;
-    transform-origin: 0 50%;
     }
     span.active {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #c69e3c;
     }
-    span.active:hover::before {
+    &:hover span::before {
+    content: '>';
+    position: relative;
+    top: -2px;
+    margin-right: 6px;
+    display: inline-block;
+}
+    &:hover span.active::before  {
     content: "🅧";
     color: #e63946;
     position: relative;
@@ -88,10 +104,10 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     transform: scale(1);
     display: inline-block;
     }
-     span.active:hover {
+     &:hover span.active {
      color: #e63946;
-     height: 20px;
-
-
+}
+  &:hover span {
+     font-size: 1.1rem;
 }
 `;
