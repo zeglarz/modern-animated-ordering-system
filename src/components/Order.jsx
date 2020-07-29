@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, ButtonContainer, ButtonsColumn } from '../styles.js';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
+import { Button, ButtonContainer, ButtonsColumn, OrderItem } from '../styles.js';
+import { motion } from 'framer-motion';
 
 const Order = ({ pizza, resetState, location }) => {
+
+    const listItem = {
+        show: {
+            transition: { staggerChildren: .15, delayChildren: 0.3 }
+        },
+        hidden: {
+            transition: { staggerChildren: 0.05, staggerDirection: -1 }
+        }
+    };
 
     return (
         <div className='order container'>
             <h3>Please review the order and push "place order" <br/> button to place order</h3>
             <p>You are about to order a {pizza.base} pizza with:</p>
-            {pizza.toppings.map(topping => <div key={topping}>{topping}</div>)}
+            <motion.div variants={listItem} initial='hidden' animate='show'>
+                {pizza.toppings.map(topping =>
+                    <OrderItem key={topping}>{topping}</OrderItem>)}
+            </motion.div>
             <ButtonsColumn>
                 <ButtonContainer>
                     <Link to={{
@@ -33,8 +45,7 @@ const Order = ({ pizza, resetState, location }) => {
                 </ButtonContainer>
             </ButtonsColumn>
         </div>
-    )
-        ;
+    );
 };
 
 export default withRouter(Order);

@@ -7,6 +7,21 @@ const buttonHoverStyle = {
     boxShadow: '0px 0px 8px rgb(255, 255, 255)'
 };
 
+const orderVariants = {
+    show: {
+        opacity: 1,
+        scale: 1.2,
+        transition: {
+            type: 'spring',
+            stiffness: 120,
+            duration: .4
+        }
+    },
+    hidden: {
+        opacity: 0
+    }
+};
+
 export const Button = styled(motion.button).attrs({
     whileHover: {
         scale: 1.1,
@@ -110,4 +125,10 @@ export const Item = styled(motion.li).attrs({
   &:hover span {
      font-size: 1.1rem;
 }
+`;
+
+export const OrderItem = styled(motion.div).attrs({
+    variants: orderVariants
+})`
+padding: 10px;
 `;

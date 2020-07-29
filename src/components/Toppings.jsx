@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
 
 const Toppings = ({ addToppings, pizza }) => {
-    const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapeno', 'strawberries'];
+    const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapeño', 'strawberries'];
 
     return (
         <MenuItem left>

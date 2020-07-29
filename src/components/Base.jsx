@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
-import { withRouter } from 'react-router';
 import { ButtonsColumn } from '../styles';
 
 const Base = ({ addBase, pizza, history }) => {
@@ -20,7 +19,7 @@ const Base = ({ addBase, pizza, history }) => {
                 })}
             </ul>
             <AnimatePresence>
-                {pizza.base && previousPath ?
+                {pizza.base.length && previousPath ?
                     (
                         <ButtonsColumn>
                             <ButtonContainer>
@@ -32,13 +31,16 @@ const Base = ({ addBase, pizza, history }) => {
                     )
                     :
                     (
-                        <ButtonsWrapper>
-                            <ButtonContainer>
-                                <Link to='/toppings'>
-                                    <Button>Next</Button>
-                                </Link>
-                            </ButtonContainer>
-                        </ButtonsWrapper>
+                        pizza.base.length &&
+                        (
+                            <ButtonsWrapper>
+                                <ButtonContainer>
+                                    <Link to='/toppings'>
+                                        <Button>Next</Button>
+                                    </Link>
+                                </ButtonContainer>
+                            </ButtonsWrapper>
+                        )
                     )
                 })
             </AnimatePresence>
