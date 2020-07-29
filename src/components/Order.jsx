@@ -38,7 +38,7 @@ const Order = ({ pizza, resetState, location }) => {
                 </ButtonContainer>
                 <ButtonContainer>
                     <Link to='/'>
-                        <Button onClick={() => resetState()}>
+                        <Button inverted onClick={() => resetState()}>
                             Place Order
                         </Button>
                     </Link>

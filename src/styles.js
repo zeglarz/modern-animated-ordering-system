@@ -29,10 +29,10 @@ export const Button = styled(motion.button).attrs({
     },
     onTap: { scale: 0.8 }
 })`
-    color: white;
+    color: ${({ inverted }) => inverted ? '#64007B' : 'white'};
     padding: 10px 30px;
     font-size: 1em;
-    background: transparent;
+    background: ${({ inverted }) => inverted ? 'white' : 'transparent'};
     border-radius: 50px;
     border: 1px solid white;
     margin: 40px auto 0;
