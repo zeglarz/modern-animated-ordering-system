@@ -44,9 +44,9 @@ export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
     initial: { x: back ? '-100vw' : '100vw' },
     animate: {
         x: 0,
-        transition: { duration: .3, delay: .3 }
+        transition: { type: 'spring', stiffness: 60, damping: 11, delay: 0.3 }
     },
-    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .3, ease: 'easeInOut' } }
+    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .4, ease: 'easeInOut' } }
 }))`
   display: inline-block;
   margin-left: ${({ back }) => back ? '0' : 'auto'}
@@ -68,8 +68,8 @@ export const ButtonsColumn = styled.div`
 
 export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     initial: { x: left ? '-100vw' : '100vw', opacity: 0 },
-    animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, delay: 0.5 } },
-    exit: { x: '-100vw', opacity: 0, transition: { duration: .2 } }
+    animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, delay: 0.2, duration: 0.4 } },
+    exit: { x: left ? '100vw' : '-100vw', opacity: 0, transition: { duration: .2 } }
 }))`
     max-width: 400px;
     margin: 100px auto 40px;
@@ -130,6 +130,14 @@ export const Item = styled(motion.li).attrs({
   &:hover span {
      font-size: 1.1rem;
 }
+
+span.active::before {
+    content: '✓';
+    position: relative;
+    top: 1px;
+    margin-right: 6px;
+    transform: scale(0.8, 1);
+    display: inline-block;
 `;
 
 export const OrderItem = styled(motion.div).attrs({

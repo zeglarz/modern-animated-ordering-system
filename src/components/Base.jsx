@@ -5,9 +5,9 @@ import { ButtonsColumn } from '../styles';
 
 const Base = ({ addBase, pizza, history }) => {
     const bases = ['Classic', 'Super Thin', 'Cheese stuffed crust'];
-    const previousPath = history.location.state && history.location.state.from.pathname === '/order';
+    const previousPath = history.location.state && history.location.state.from.pathname;
     return (
-        <MenuItem>
+        <MenuItem left={previousPath === '/toppings' || previousPath === '/order'}>
             <h3>Choose your crust</h3>
             <ul>
                 {bases.map(base => {
@@ -17,7 +17,7 @@ const Base = ({ addBase, pizza, history }) => {
                             className={spanClass}>{base}</span></Item>);
                 })}
             </ul>
-            {pizza.base.length && previousPath ?
+            {pizza.base.length && previousPath === '/order' ?
                 (
                     <ButtonsColumn>
                         <ButtonContainer>

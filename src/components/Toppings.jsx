@@ -1,13 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
 
-const Toppings = ({ addToppings, pizza }) => {
+const Toppings = ({ addToppings, pizza, history, location }) => {
     const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapeño', 'strawberries'];
+    const previousPath = history.location.state && history.location.state.from.pathname === '/order';
+    const [buttonClicked, setButtonClicked] = useState(false);
 
     return (
-        <MenuItem>
+        <MenuItem left={previousPath || buttonClicked}>
             <h3>Choose your toppings</h3>
             <ul>
                 {toppings.map(topping => {
@@ -19,8 +21,11 @@ const Toppings = ({ addToppings, pizza }) => {
             </ul>
             <ButtonsWrapper>
                 <ButtonContainer back>
-                    <Link to='/base'>
-                        <Button>Back</Button>
+                    <Link to={{
+                        pathname: '/base',
+                        state: { from: location }
+                    }}>
+                        <Button onClick={() => setButtonClicked(true)}>Back</Button>
                     </Link>
                 </ButtonContainer>
                 {pizza.toppings.length > 0 && (
@@ -35,4 +40,4 @@ const Toppings = ({ addToppings, pizza }) => {
     );
 };
 
-export default Toppings;
+export default withRouter(Toppings);
