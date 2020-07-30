@@ -44,9 +44,9 @@ export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
     initial: { x: back ? '-100vw' : '100vw' },
     animate: {
         x: 0,
-        transition: { duration: .3, type: 'spring', stiffness: 45, delay: .3 }
+        transition: { duration: .3, delay: .3 }
     },
-    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .3, type: 'spring', stiffness: 45, delay: .3 } }
+    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .3, ease: 'easeInOut' } }
 }))`
   display: inline-block;
   margin-left: ${({ back }) => back ? '0' : 'auto'}
@@ -67,8 +67,9 @@ export const ButtonsColumn = styled.div`
 `;
 
 export const MenuItem = styled(motion.div).attrs(({ left }) => ({
-    initial: { x: left ? '-100vw' : '100vw' },
-    animate: { x: 0, transition: { duration: .7, type: 'spring', stiffness: 60 } }
+    initial: { x: left ? '-100vw' : '100vw', opacity: 0 },
+    animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, delay: 0.5 } },
+    exit: { x: '-100vw', opacity: 0, transition: { duration: .2 } }
 }))`
     max-width: 400px;
     margin: 100px auto 40px;
@@ -78,6 +79,10 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     text-align: center;
     }
+    ${({ order }) => order && `
+     text-align: center;
+     max-width: 800px;
+    `}
 `;
 
 export const Item = styled(motion.li).attrs({

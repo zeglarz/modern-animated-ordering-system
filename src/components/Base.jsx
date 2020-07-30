@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
 import { ButtonsColumn } from '../styles';
 
@@ -18,20 +17,19 @@ const Base = ({ addBase, pizza, history }) => {
                             className={spanClass}>{base}</span></Item>);
                 })}
             </ul>
-            <AnimatePresence>
-                {pizza.base.length && previousPath ?
-                    (
-                        <ButtonsColumn>
-                            <ButtonContainer>
-                                <Link to='/order'>
-                                    <Button>Order</Button>
-                                </Link>
-                            </ButtonContainer>
-                        </ButtonsColumn>
-                    )
-                    :
-                    (
-                        pizza.base.length &&
+            {pizza.base.length && previousPath ?
+                (
+                    <ButtonsColumn>
+                        <ButtonContainer>
+                            <Link to='/order'>
+                                <Button>Order</Button>
+                            </Link>
+                        </ButtonContainer>
+                    </ButtonsColumn>
+                )
+                :
+                (
+                    pizza.base.length ?
                         (
                             <ButtonsWrapper>
                                 <ButtonContainer>
@@ -41,9 +39,10 @@ const Base = ({ addBase, pizza, history }) => {
                                 </ButtonContainer>
                             </ButtonsWrapper>
                         )
-                    )
-                })
-            </AnimatePresence>
+                        :
+                        ('')
+                )
+            }
         </MenuItem>
     );
 };

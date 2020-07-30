@@ -5,8 +5,9 @@ import { Button } from '../styles.js';
 
 const Home = (props) => {
     return (
-        <motion.div animate={{ opacity: 1, ease: 'easeIn', transition: { duration: 3, delay: .5 } }}
-                    initial={{ opacity: 0, transform: { rotate: 45 } }}
+        <motion.div animate={{ opacity: 1, ease: 'easeIn', transition: { duration: 2, delay: .6 } }}
+                    exit={{ opacity: 0, x: '-100vw', transition: { duration: .3 } }}
+                    initial={{ opacity: 0 }}
                     className='home container'>
             <h2>Welcome to Pizza Orderotron!</h2>
             <Link to='/base'>

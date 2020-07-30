@@ -7,7 +7,7 @@ const Toppings = ({ addToppings, pizza }) => {
     const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapeño', 'strawberries'];
 
     return (
-        <MenuItem left>
+        <MenuItem>
             <h3>Choose your toppings</h3>
             <ul>
                 {toppings.map(topping => {

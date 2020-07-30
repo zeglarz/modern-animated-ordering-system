@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, ButtonContainer, ButtonsColumn, OrderItem } from '../styles.js';
+import { Button, ButtonContainer, ButtonsColumn, OrderItem, MenuItem } from '../styles.js';
 import { motion } from 'framer-motion';
 
 const Order = ({ pizza, resetState, location }) => {
 
     const listItem = {
         show: {
-            transition: { staggerChildren: .15, delayChildren: 0.3 }
+            transition: { staggerChildren: .15, delayChildren: 0.7 }
         },
         hidden: {
             transition: { staggerChildren: 0.05, staggerDirection: -1 }
@@ -15,7 +15,7 @@ const Order = ({ pizza, resetState, location }) => {
     };
 
     return (
-        <div className='order container'>
+        <MenuItem order>
             <h3>Please review the order and push "place order" <br/> button to place order</h3>
             <p>You are about to order a {pizza.base} pizza with:</p>
             <motion.div variants={listItem} initial='hidden' animate='show'>
@@ -44,7 +44,7 @@ const Order = ({ pizza, resetState, location }) => {
                     </Link>
                 </ButtonContainer>
             </ButtonsColumn>
-        </div>
+        </MenuItem>
     );
 };
 
