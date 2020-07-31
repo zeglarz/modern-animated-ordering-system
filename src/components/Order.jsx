@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Button, ButtonContainer, ButtonsColumn, OrderItem, MenuItem } from '../styles.js';
 import { motion } from 'framer-motion';
 
@@ -48,12 +48,8 @@ const Order = ({ pizza, resetState, location, history, setShowModal }) => {
                     </Link>
                 </ButtonContainer>
                 <ButtonContainer>
-                    <Link to='/'>
-                        <Button inverted onClick={() => {
-                            setShowModal(true);
-                            resetState();
-                            setButtonClicked(true);
-                        }}>
+                    <Link to='/payment'>
+                        <Button inverted>
                             Place Order
                         </Button>
                     </Link>

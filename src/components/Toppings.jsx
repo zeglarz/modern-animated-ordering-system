@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
 
 const Toppings = ({ addToppings, pizza, history, location }) => {

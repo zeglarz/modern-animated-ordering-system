@@ -16,7 +16,6 @@ const App = () => {
     const initialState = JSON.parse(storage.getItem('storedPizzaProps')) || pizzaProps;
 
     const [pizza, setPizza] = useState(initialState);
-    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         storage.setItem('storedPizzaProps', JSON.stringify(pizza));
@@ -39,9 +38,10 @@ const App = () => {
         <>
             <Header/>
             <AnimatePresence exitBeforeEnter>
-                {showModal && (<Modal setShowModal={setShowModal}/>)}
-
                 <Switch location={location} key={location.key}>
+                    <Route path='/payment'>
+                        <Modal pizza={pizza}/>
+                    </Route>
                     <Route path='/base'>
                         <Base addBase={addBase} pizza={pizza}/>
                     </Route>
@@ -49,10 +49,10 @@ const App = () => {
                         <Toppings addToppings={addToppings} pizza={pizza}/>
                     </Route>
                     <Route path='/order'>
-                        <Order pizza={pizza} resetState={resetState} setShowModal={setShowModal}/>
+                        <Order pizza={pizza} resetState={resetState}/>
                     </Route>
                     <Route path='/'>
-                        <Home pizza={pizza}/>
+                        <Home pizza={pizza} resetState={resetState}/>
                     </Route>
                 </Switch>
             </AnimatePresence>

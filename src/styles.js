@@ -49,9 +49,9 @@ const buttonEffect = main => ({
 });
 
 const backdropVariants = {
-    show: { opacity: 1 },
+    show: { opacity: 1, transition: { when: 'beforeChildren' } },
     hidden: { opacity: 0 },
-    exit: { opacity: 0 }
+    exit: { opacity: 0, transition: { when: 'afterChildren', duration: .2 } }
 
 };
 
@@ -59,9 +59,9 @@ const styledModalVariants = {
     show: { scale: 1, transition: { duration: .5, type: 'spring', stiffness: 80 } },
     hidden: { scale: 0.0 },
     exit: {
-        x: '70vw',
-        y: ['-10vh', '-20vh', '-30vh', '-40vh', '-45vh', '-50vh', '-55vh', '-60vh'],
-        scale: 0,
+        x: '80vw',
+        y: ['-10vh', '-20vh', '-30vh', '-40vh', '-45vh', '-50vh', '-55vh', '-60vh', '65vh'],
+        scale: -.5,
         opacity: 0,
         transition: { ease: 'easeOut', duration: .6 }
     }
@@ -208,8 +208,7 @@ export const StyledModal = styled(motion.div).attrs({
 
 })`
 max-width: 400px;
-height: 70%;
-  margin: 5% auto;
+  margin: 25vh auto;
   padding: 40px 20px;
 background: white;
 z-index: 1;
@@ -231,6 +230,5 @@ margin: 10px 10px;
 button {
 color: #444;
     border: 1px solid #444;
-
 }
 `;
