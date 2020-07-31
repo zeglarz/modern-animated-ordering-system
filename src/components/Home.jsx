@@ -11,7 +11,7 @@ const Home = (props) => {
                     className='home container'>
             <h2>Welcome to Pizza Orderotron!</h2>
             <Link to='/base'>
-                <Button>
+                <Button main>
                     Create your own Pizza
                 </Button>
             </Link>

@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { Button, ButtonContainer, ButtonsColumn, OrderItem, MenuItem } from '../styles.js';
 import { motion } from 'framer-motion';
 
-const Order = ({ pizza, resetState, location }) => {
+const Order = ({ pizza, resetState, location, history }) => {
+    useEffect(() => {
+        if (pizza.base === '') {
+            return history.push('/base');
+        } else if (pizza.toppings.length === 0) {
+            return history.push('/toppings');
+        }
+        return;
+    }, [pizza]);
+
     const [buttonClicked, setButtonClicked] = useState(false);
     const listItem = {
         show: {

@@ -7,6 +7,21 @@ const buttonHoverStyle = {
     boxShadow: '0px 0px 8px rgb(255, 255, 255)'
 };
 
+const buttonContainerVariants = back => ({
+    initial: { x: back ? '-100vw' : '100vw' },
+    animate: {
+        x: 0,
+        transition: { type: 'spring', stiffness: 60, damping: 11, delay: 0.2 }
+    },
+    exit: {
+        x: back ? '-100vw' : '100vw',
+        transition: {
+            duration: .4,
+            ease: 'easeInOut'
+        }
+    }
+});
+
 const orderVariants = {
     show: {
         opacity: 1,
@@ -22,13 +37,26 @@ const orderVariants = {
     }
 };
 
-export const Button = styled(motion.button).attrs({
+const buttonEffect = main => ({
     whileHover: {
         scale: 1.1,
-        ...buttonHoverStyle
+        ...buttonHoverStyle,
+        transition: {
+            yoyo: main ? Infinity : 0
+        }
     },
     onTap: { scale: 0.8 }
-})`
+});
+
+const backdropVariants = {
+    show: { opacity: 1 },
+    hidden: { opacity: 0 }
+};
+
+export const Button = styled(motion.button).attrs(({ main }) => ({
+        ...buttonEffect(main)
+    }
+))`
     color: ${({ inverted }) => inverted ? '#64007B' : 'white'};
     padding: 10px 30px;
     font-size: 1em;
@@ -41,12 +69,7 @@ export const Button = styled(motion.button).attrs({
 `;
 
 export const ButtonContainer = styled(motion.div).attrs(({ back }) => ({
-    initial: { x: back ? '-100vw' : '100vw' },
-    animate: {
-        x: 0,
-        transition: { type: 'spring', stiffness: 60, damping: 11, delay: 0.3 }
-    },
-    exit: { x: back ? '-100vw' : '100vw', transition: { duration: .4, ease: 'easeInOut' } }
+    ...buttonContainerVariants(back)
 }))`
   display: inline-block;
   margin-left: ${({ back }) => back ? '0' : 'auto'}
@@ -68,7 +91,7 @@ export const ButtonsColumn = styled.div`
 
 export const MenuItem = styled(motion.div).attrs(({ left }) => ({
     initial: { x: left ? '-100vw' : '100vw', opacity: 0 },
-    animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, delay: 0.2, duration: 0.4 } },
+    animate: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 60, delay: 0, duration: 0.4 } },
     exit: { x: left ? '100vw' : '-100vw', opacity: 0, transition: { duration: .2 } }
 }))`
     max-width: 400px;
@@ -144,4 +167,27 @@ export const OrderItem = styled(motion.div).attrs({
     variants: orderVariants
 })`
 padding: 10px;
+`;
+
+export const Backdrop = styled(motion.div).attrs({
+    variants: backdropVariants,
+    initial: 'hidden',
+    animate: 'show'
+})`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 1;
+`;
+
+export const StyledModal = styled(motion.div)`
+width: 35%;
+height: 70%;
+  margin: 10vh auto;
+background: white;
+z-index: 1;
+border-radius: 20px;
 `;

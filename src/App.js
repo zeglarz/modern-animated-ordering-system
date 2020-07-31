@@ -6,17 +6,17 @@ import Home from './components/Home';
 import Base from './components/Base';
 import Order from './components/Order';
 import { AnimatePresence } from 'framer-motion';
+import Modal from './components/Modal';
 
 const App = () => {
     const location = useLocation();
-
     const pizzaProps = { base: '', toppings: [] };
-
     const storage = window.localStorage;
 
     const initialState = JSON.parse(storage.getItem('storedPizzaProps')) || pizzaProps;
 
     const [pizza, setPizza] = useState(initialState);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         storage.setItem('storedPizzaProps', JSON.stringify(pizza));
@@ -38,7 +38,8 @@ const App = () => {
     return (
         <>
             <Header/>
-            <AnimatePresence>
+            <Modal showModal={showModal} setShowModal={setShowModal}/>
+            <AnimatePresence exitBeforeEnter>
                 <Switch location={location} key={location.key}>
                     <Route path='/base'>
                         <Base addBase={addBase} pizza={pizza}/>
@@ -46,7 +47,7 @@ const App = () => {
                     <Route path='/toppings'>
                         <Toppings addToppings={addToppings} pizza={pizza}/>
                     </Route>
-                    <Route path='/order'>
+                    <Route path='/order' setShowModal={setShowModal}>
                         <Order pizza={pizza} resetState={resetState}/>
                     </Route>
                     <Route path='/'>
