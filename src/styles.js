@@ -50,7 +50,32 @@ const buttonEffect = main => ({
 
 const backdropVariants = {
     show: { opacity: 1 },
-    hidden: { opacity: 0 }
+    hidden: { opacity: 0 },
+    exit: { opacity: 0 }
+
+};
+
+const styledModalVariants = {
+    show: { scale: 1, transition: { duration: .5, type: 'spring', stiffness: 80 } },
+    hidden: { scale: 0.0 },
+    exit: {
+        x: '70vw',
+        y: ['-10vh', '-20vh', '-30vh', '-40vh', '-45vh', '-50vh', '-55vh', '-60vh'],
+        scale: 0,
+        opacity: 0,
+        transition: { ease: 'easeOut', duration: .6 }
+    }
+};
+
+
+const orderItemVariants = {
+    scale: 1.3,
+    originX: 0,
+    transition: {
+        type: 'spring',
+        stiffness: 300,
+        duration: 0.3
+    }
 };
 
 export const Button = styled(motion.button).attrs(({ main }) => ({
@@ -96,6 +121,7 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
 }))`
     max-width: 400px;
     margin: 100px auto 40px;
+    color: white;
     h3 {
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -109,15 +135,7 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
 `;
 
 export const Item = styled(motion.li).attrs({
-    whileHover: {
-        scale: 1.3,
-        originX: 0,
-        transition: {
-            type: 'spring',
-            stiffness: 300,
-            duration: 0.3
-        }
-    }
+    ...orderItemVariants
 })`
     cursor: pointer;
     padding: 10px;
@@ -172,7 +190,8 @@ padding: 10px;
 export const Backdrop = styled(motion.div).attrs({
     variants: backdropVariants,
     initial: 'hidden',
-    animate: 'show'
+    animate: 'show',
+    exit: 'exit'
 })`
 position: fixed;
 top: 0;
@@ -183,11 +202,35 @@ background: rgba(0, 0, 0, 0.5);
 z-index: 1;
 `;
 
-export const StyledModal = styled(motion.div)`
-width: 35%;
+export const StyledModal = styled(motion.div).attrs({
+    variants: styledModalVariants,
+    exit: 'exit'
+
+})`
+max-width: 400px;
 height: 70%;
-  margin: 10vh auto;
+  margin: 5% auto;
+  padding: 40px 20px;
 background: white;
 z-index: 1;
 border-radius: 20px;
+`;
+
+export const ModalContent = styled(motion.div)`
+display: flex;
+flex-direction: column;
+justify-content: center;
+p {
+color: #444;
+text-align: center;
+padding: 15px;
+}
+input {
+margin: 10px 10px;
+}
+button {
+color: #444;
+    border: 1px solid #444;
+
+}
 `;

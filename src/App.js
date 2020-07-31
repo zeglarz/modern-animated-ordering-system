@@ -38,8 +38,9 @@ const App = () => {
     return (
         <>
             <Header/>
-            <Modal showModal={showModal} setShowModal={setShowModal}/>
             <AnimatePresence exitBeforeEnter>
+                {showModal && (<Modal setShowModal={setShowModal}/>)}
+
                 <Switch location={location} key={location.key}>
                     <Route path='/base'>
                         <Base addBase={addBase} pizza={pizza}/>
@@ -47,8 +48,8 @@ const App = () => {
                     <Route path='/toppings'>
                         <Toppings addToppings={addToppings} pizza={pizza}/>
                     </Route>
-                    <Route path='/order' setShowModal={setShowModal}>
-                        <Order pizza={pizza} resetState={resetState}/>
+                    <Route path='/order'>
+                        <Order pizza={pizza} resetState={resetState} setShowModal={setShowModal}/>
                     </Route>
                     <Route path='/'>
                         <Home pizza={pizza}/>

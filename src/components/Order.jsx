@@ -3,7 +3,7 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 import { Button, ButtonContainer, ButtonsColumn, OrderItem, MenuItem } from '../styles.js';
 import { motion } from 'framer-motion';
 
-const Order = ({ pizza, resetState, location, history }) => {
+const Order = ({ pizza, resetState, location, history, setShowModal }) => {
     useEffect(() => {
         if (pizza.base === '') {
             return history.push('/base');
@@ -50,6 +50,7 @@ const Order = ({ pizza, resetState, location, history }) => {
                 <ButtonContainer>
                     <Link to='/'>
                         <Button inverted onClick={() => {
+                            setShowModal(true);
                             resetState();
                             setButtonClicked(true);
                         }}>
