@@ -135,7 +135,7 @@ export const MenuItem = styled(motion.div).attrs(({ left }) => ({
 `;
 
 export const Item = styled(motion.li).attrs({
-    ...orderItemVariants
+    whileHover: orderItemVariants
 })`
     cursor: pointer;
     padding: 10px;
@@ -231,4 +231,14 @@ button {
 color: #444;
     border: 1px solid #444;
 }
+`;
+
+export const StyledLoader = styled(motion.div)`
+width: 10px;
+height: 10px;
+margin: 40px auto;
+border-radius: 50%;
+background: #fff;
+display: inline-block;
+margin: 5px;
 `;
