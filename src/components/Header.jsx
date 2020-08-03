@@ -75,7 +75,7 @@ const Header = (props) => {
                                       animate={{ y: 0 }} exit={{ y: -100, transition: { duration: .3 } }}>
                             <Basket fill={'white'}/>
                         </StyledBasket>
-                        <BasketMenu isHover={isHover}/>
+                        <BasketMenu isHover={isHover} pizza={props.pizza}/>
                     </BasketContainer>
                 )}
             </AnimatePresence>

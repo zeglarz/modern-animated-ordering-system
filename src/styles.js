@@ -186,6 +186,7 @@ export const BasketContainer = styled(motion.div)`
 `;
 export const BasketMenuItem = styled(motion.div)`
   width: 100%;
+  font-size: 0.8rem;
   perspective: 2000px;
 `;
 
@@ -197,12 +198,14 @@ padding: 0 20px 0 40px;
 export const SubMenu = styled(motion.div)`
   position: absolute;
   top: 25px;
-  left: -90px;
+  right: 20px;
   padding: 15px;
   background-color: #ccc;
   border-radius: 6px;
   transform-origin: 50% -30px;
-  width: 150px;
+  width: 200px;
+        box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+
   &::before {
   content: "";
   transform: rotate(45deg);
@@ -212,6 +215,10 @@ export const SubMenu = styled(motion.div)`
   border-top: 10px solid #ccc;
   border-bottom: 10px solid transparent;
   top: -7px;
-  right: 26px;
- 
+  right: 26px; 
+`;
+
+export const Divider = styled.hr`
+  border-top: 1px solid #bbb;
+
 `;
