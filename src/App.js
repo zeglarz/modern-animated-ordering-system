@@ -5,13 +5,17 @@ import Toppings from './components/Toppings';
 import Home from './components/Home';
 import Base from './components/Base';
 import Order from './components/Order';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, useCycle } from 'framer-motion';
 import Modal from './components/Modal';
+import Loader from './components/Loader';
 
 const App = () => {
     const location = useLocation();
     const pizzaProps = { base: '', toppings: [] };
     const storage = window.localStorage;
+
+    const animations = ['animeOne', 'animeTwo'];
+    const [cycle, switchCycle] = useCycle(...animations);
 
     const initialState = JSON.parse(storage.getItem('storedPizzaProps')) || pizzaProps;
 
@@ -50,6 +54,9 @@ const App = () => {
                     </Route>
                     <Route path='/order'>
                         <Order pizza={pizza} resetState={resetState}/>
+                    </Route>
+                    <Route path='/loader'>
+                        <Loader cycle={cycle} switchCycle={switchCycle}/>
                     </Route>
                     <Route path='/'>
                         <Home pizza={pizza} resetState={resetState}/>

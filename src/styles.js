@@ -146,7 +146,7 @@ export const Item = styled(motion.li).attrs({
     span.active {
     font-weight: bold;
     font-size: 1.1rem;
-    color: #c69e3c;
+    color: #fdbc01;
     }
     &:hover span::before {
     content: '>';
@@ -157,7 +157,7 @@ export const Item = styled(motion.li).attrs({
 }
     &:hover span.active::before  {
     content: "🅧";
-    color: #e63946;
+    color: #ff3100;
     position: relative;
     font-size: 1rem;
     top: 1px;
@@ -166,7 +166,9 @@ export const Item = styled(motion.li).attrs({
     display: inline-block;
     }
      &:hover span.active {
-     color: #e63946;
+    color: #ff0000;
+    text-shadow: 0px 0px 10px rgb(67,63,63)
+
 }
   &:hover span {
      font-size: 1.1rem;

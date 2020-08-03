@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyledLoader } from '../styles.js';
+import { Button } from '../styles';
 
 const loaderVariants = {
-    animeFirst: {
+    animeOne: {
         x: [-20, 20],
         y: [0, -30],
         transition: {
@@ -34,12 +35,15 @@ const loaderVariants = {
     }
 };
 
-const Loader = (props) => {
+export const animes = Object.keys(loaderVariants)
+
+const Loader = ({ cycle, switchCycle }) => {
     return (
         <>
-            <StyledLoader variants={loaderVariants} animate='animeFirst'/>
-            <StyledLoader variants={loaderVariants} animate='animeTwo'/>
-            <StyledLoader variants={loaderVariants} animate='animeFirst'/>
+            <StyledLoader variants={loaderVariants} animate={cycle}/>
+            <StyledLoader variants={loaderVariants} animate={cycle}/>
+            <StyledLoader variants={loaderVariants} animate={cycle}/>
+            <Button onClick={() => switchCycle()}>Switch Animations</Button>
         </>
     );
 };
