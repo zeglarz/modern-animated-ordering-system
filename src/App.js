@@ -40,7 +40,7 @@ const App = () => {
 
     return (
         <>
-            <Header/>
+            <Header pizza={pizza}/>
             <AnimatePresence exitBeforeEnter>
                 <Switch location={location} key={location.key}>
                     <Route path='/payment'>

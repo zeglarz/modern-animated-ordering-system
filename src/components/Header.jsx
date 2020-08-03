@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Basket from './Basket';
+import { StyledBasket, BasketContainer, BasketMenuItem } from '../styles';
+import BasketMenu from './BasketMenu';
 
 const svgVariants = {
     init: { rotate: -180 },
@@ -23,8 +26,12 @@ const pathVariants = {
 };
 
 const Header = (props) => {
+    const [isHover, toggleHover] = React.useState(false);
+    const toggleHoverMenu = () => {
+        toggleHover(!isHover);
+    };
     return (
-        <header onClick={() => props.history.push('/')}>
+        <header>
             <motion.div className="logo"
                         drag
                         dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
@@ -50,6 +57,7 @@ const Header = (props) => {
                 </motion.svg>
             </motion.div>
             <motion.div
+                onClick={() => props.history.push('/')}
                 className="title"
                 animate={{ y: -10 }}
                 whileTap={{ y: -350 }}
@@ -59,6 +67,15 @@ const Header = (props) => {
             >
                 <h1>Pizza Orderotron</h1>
             </motion.div>
+            {props.pizza && props.pizza.base && props.pizza.toppings.length !== 0 &&
+            (
+                <BasketContainer>
+                    <StyledBasket onTap={toggleHoverMenu} whileTap={{ scale: 1.2 }}>
+                        <Basket fill={'white'}/>
+                    </StyledBasket>
+                    <BasketMenu isHover={isHover}/>
+                </BasketContainer>
+            )}
         </header>
     );
 };

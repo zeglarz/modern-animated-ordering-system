@@ -6,7 +6,7 @@
 }
 
 /* reset & common styles */
-body, ul, h1, h2, h3, p, button, a, div {
+body, ul, h1, h2, h3, p, button, a {
     margin: 0;
     padding: 0;
     color: white;

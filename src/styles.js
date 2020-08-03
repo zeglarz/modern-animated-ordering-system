@@ -1,82 +1,16 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import React from 'react';
+import {
+    orderItemVariants,
+    styledModalVariants,
+    backdropVariants,
+    buttonEffect,
+    orderVariants,
+    buttonContainerVariants,
+    subMenuAnimate
+} from './animations';
 
-const buttonHoverStyle = {
-    textShadow: '0px 0px 8px rgb(255, 255, 255)',
-    boxShadow: '0px 0px 8px rgb(255, 255, 255)'
-};
-
-const buttonContainerVariants = back => ({
-    initial: { x: back ? '-100vw' : '100vw' },
-    animate: {
-        x: 0,
-        transition: { type: 'spring', stiffness: 60, damping: 11, delay: 0.2 }
-    },
-    exit: {
-        x: back ? '-100vw' : '100vw',
-        transition: {
-            duration: .4,
-            ease: 'easeInOut'
-        }
-    }
-});
-
-const orderVariants = {
-    show: {
-        opacity: 1,
-        scale: 1.2,
-        transition: {
-            type: 'spring',
-            stiffness: 120,
-            duration: .4
-        }
-    },
-    hidden: {
-        opacity: 0
-    }
-};
-
-const buttonEffect = main => ({
-    whileHover: {
-        scale: 1.1,
-        ...buttonHoverStyle,
-        transition: {
-            yoyo: main ? Infinity : 0
-        }
-    },
-    onTap: { scale: 0.8 }
-});
-
-const backdropVariants = {
-    show: { opacity: 1, transition: { when: 'beforeChildren' } },
-    hidden: { opacity: 0 },
-    exit: { opacity: 0, transition: { when: 'afterChildren', duration: .2 } }
-
-};
-
-const styledModalVariants = {
-    show: { scale: 1, transition: { duration: .5, type: 'spring', stiffness: 80 } },
-    hidden: { scale: 0.0 },
-    exit: {
-        x: '80vw',
-        y: ['-10vh', '-20vh', '-30vh', '-40vh', '-45vh', '-50vh', '-55vh', '-60vh', '65vh'],
-        scale: -.5,
-        opacity: 0,
-        transition: { ease: 'easeOut', duration: .6 }
-    }
-};
-
-
-const orderItemVariants = {
-    scale: 1.3,
-    originX: 0,
-    transition: {
-        type: 'spring',
-        stiffness: 300,
-        duration: 0.3
-    }
-};
 
 export const Button = styled(motion.button).attrs(({ main }) => ({
         ...buttonEffect(main)
@@ -242,5 +176,43 @@ margin: 40px auto;
 border-radius: 50%;
 background: #fff;
 display: inline-block;
-margin: 5px;
+`;
+export const BasketContainer = styled(motion.div)`
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+`;
+export const BasketMenuItem = styled(motion.div)`
+  width: 100%;
+  perspective: 2000px;
+`;
+
+export const StyledBasket = styled(motion.div)`
+margin: -40px 20px 0 0;
+padding: 0 20px 0 40px;
+`;
+
+export const SubMenu = styled(motion.div)`
+  position: absolute;
+  top: 25px;
+  left: -90px;
+  padding: 15px;
+  background-color: #ccc;
+  border-radius: 6px;
+  transform-origin: 50% -30px;
+  width: 150px;
+  &::before {
+  content: "";
+  transform: rotate(45deg);
+  position: absolute;
+  border-left: 10px solid #ccc;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ccc;
+  border-bottom: 10px solid transparent;
+  top: -7px;
+  right: 26px;
+ 
 `;
