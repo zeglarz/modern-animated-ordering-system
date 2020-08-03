@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Basket from './Basket';
 import { StyledBasket, BasketContainer, BasketMenuItem } from '../styles';
 import BasketMenu from './BasketMenu';
@@ -33,6 +33,7 @@ const Header = (props) => {
     return (
         <header>
             <motion.div className="logo"
+                        onClick={() => props.history.push('/')}
                         drag
                         dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
                         dragElastic={0.7}
@@ -57,7 +58,6 @@ const Header = (props) => {
                 </motion.svg>
             </motion.div>
             <motion.div
-                onClick={() => props.history.push('/')}
                 className="title"
                 animate={{ y: -10 }}
                 whileTap={{ y: -350 }}
@@ -67,15 +67,18 @@ const Header = (props) => {
             >
                 <h1>Pizza Orderotron</h1>
             </motion.div>
-            {props.pizza && props.pizza.base && props.pizza.toppings.length !== 0 &&
-            (
-                <BasketContainer onBlur={toggleHoverMenu} tabIndex="1">
-                    <StyledBasket onTap={toggleHoverMenu} whileTap={{ scale: 1.2 }}>
-                        <Basket fill={'white'}/>
-                    </StyledBasket>
-                    <BasketMenu isHover={isHover}/>
-                </BasketContainer>
-            )}
+            <AnimatePresence>
+                {props.pizza && props.pizza.base && props.pizza.toppings.length !== 0 &&
+                (
+                    <BasketContainer onBlur={toggleHoverMenu} tabIndex="1">
+                        <StyledBasket onTap={toggleHoverMenu} whileTap={{ scale: 1.2 }} initial={{ y: -100 }}
+                                      animate={{ y: 0 }} exit={{ y: -100, transition: { duration: .3 } }}>
+                            <Basket fill={'white'}/>
+                        </StyledBasket>
+                        <BasketMenu isHover={isHover}/>
+                    </BasketContainer>
+                )}
+            </AnimatePresence>
         </header>
     );
 };

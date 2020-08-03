@@ -7,8 +7,7 @@ import {
     backdropVariants,
     buttonEffect,
     orderVariants,
-    buttonContainerVariants,
-    subMenuAnimate
+    buttonContainerVariants
 } from './animations';
 
 

@@ -13,7 +13,7 @@ const buttonContainerVariants = back => ({
         x: back ? '-100vw' : '100vw',
         transition: {
             duration: .4,
-            ease: 'easeInOut'
+            delay: 0.2
         }
     }
 });
@@ -59,7 +59,7 @@ const styledModalVariants = {
         y: ['-10vh', '-20vh', '-30vh', '-40vh', '-45vh', '-50vh'],
         scale: -.5,
         opacity: 0,
-        transition: { ease: 'easeOut', duration: .5, opacity: { duration: 0.33 } }
+        transition: { ease: 'easeOut', duration: .5, opacity: { duration: 0.32 } }
     }
 };
 
@@ -79,6 +79,8 @@ const subMenuAnimate = {
         opacity: 1,
         rotateX: 0,
         transition: {
+            type: 'spring',
+            stiffness: 110,
             duration: 0.6,
             delay: 0.1,
             opacity: {
@@ -91,6 +93,7 @@ const subMenuAnimate = {
         opacity: 0,
         rotateX: -90,
         transition: {
+            ease: 'easeInOut',
             duration: 0.5,
             delay: 0.1,
             opacity: {

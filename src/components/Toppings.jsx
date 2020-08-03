@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, ButtonContainer, ButtonsWrapper, MenuItem, Item } from '../styles.js';
+import { AnimatePresence } from 'framer-motion';
 
 const Toppings = ({ addToppings, pizza, history, location }) => {
     const toppings = ['pepperoni', 'extra mozzarella', 'pineapple', 'ham', 'rucola', 'prosciutto', 'chili', 'jalapeño', 'strawberries'];
@@ -27,13 +28,15 @@ const Toppings = ({ addToppings, pizza, history, location }) => {
                         <Button onClick={() => setButtonClicked(true)}>Back</Button>
                     </Link>
                 </ButtonContainer>
-                {pizza.toppings.length > 0 && (
-                    <ButtonContainer>
-                        <Link to='/order'>
-                            <Button>Next</Button>
-                        </Link>
-                    </ButtonContainer>
-                )}
+                <AnimatePresence>
+                    {pizza.toppings.length > 0 && (
+                        <ButtonContainer>
+                            <Link to='/order'>
+                                <Button>Next</Button>
+                            </Link>
+                        </ButtonContainer>
+                    )}
+                </AnimatePresence>
             </ButtonsWrapper>
         </MenuItem>
     );
