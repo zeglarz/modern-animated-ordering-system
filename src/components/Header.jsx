@@ -69,7 +69,7 @@ const Header = (props) => {
             </motion.div>
             {props.pizza && props.pizza.base && props.pizza.toppings.length !== 0 &&
             (
-                <BasketContainer>
+                <BasketContainer onBlur={toggleHoverMenu} tabIndex="1">
                     <StyledBasket onTap={toggleHoverMenu} whileTap={{ scale: 1.2 }}>
                         <Basket fill={'white'}/>
                     </StyledBasket>

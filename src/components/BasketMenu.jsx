@@ -2,10 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { subMenuAnimate } from '../animations';
 import { SubMenu, BasketMenuItem, BasketContainer } from '../styles';
-import Basket from './Basket';
 
 const BasketMenu = (props) => {
-
     return (
         <SubMenu
             className="sub-menu"
